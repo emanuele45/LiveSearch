@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.elkarte.net/site/package-info">
+<package-info xmlns="http://www.elkarte.net/site/package-info" xmlns:elk="http://www.elkarte.net/">
+	<license><![CDATA[
+/**
+ * Live Search
+ *
+ * @name      Live Search
+ * @copyright Live Search contributors
+ * @license   BSD http://opensource.org/licenses/BSD-3-Clause
+ *
+ * @version 0.1.2
+ *
+ */
+	]]></license>
+	<id>emanuele:LiveSearch</id>
+	<name>Live Search</name>
+	<version>0.0.1</version>
+	<type>modification</type>
+	<install for="1.0 RC3 - 1.0.99">
+		<require-file name="LiveSearch.integrate.php" destination="SOURCEDIR" />
+		<require-file name="LiveSearch.js" destination="THEMEDIR/scripts" />
+		<require-file name="LiveSearch.template.php" destination="THEMEDIR" />
+		<require-file name="LiveSearch.css" destination="THEMEDIR/css" />
+		<hook hook="integrate_load_theme" file="SOURCEDIR/LiveSearch.integrate.php" function="Live_Search_Integrate::load_theme" />
+	</install>
+	<uninstall for="1.0 RC3 - 1.0.99">
+		<remove-file name="SOURCEDIR/LiveSearch.integrate.php" />
+		<remove-file name="THEMEDIR/scripts/LiveSearch.js" />
+		<remove-file name="THEMEDIR/LiveSearch.template.php" />
+		<remove-file name="THEMEDIR/css/LiveSearch.css" />
+		<hook reverse="true" hook="integrate_load_theme" file="SOURCEDIR/LiveSearch.integrate.php" function="Live_Search_Integrate::load_theme" />
+	</uninstall>
+</package-info>

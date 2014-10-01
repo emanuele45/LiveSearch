@@ -1,0 +1,48 @@
+#search_form .search_container * {
+	float: none;
+}
+
+#search_form {
+	position: relative;
+}
+
+#search_form .search_container {
+	position: absolute;
+	top: 100%;
+	z-index: 101;
+	background-color: #FFF;
+	overflow: auto;
+	margin-left: -6px;
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.804) 0px 4px 14px 0px;
+}
+#search_form .search_container .message {
+	padding: 0.5em;
+}
+#search_form .search_container .poster {
+	float: left;
+	margin-right: 0.5em;
+}
+#search_form .search_container .subject {
+	padding-left: 6px;
+}
+#search_form .search_container .poster .name {
+	padding-top: 0;
+	padding-left: 6px;
+	display: block;
+       	text-align: left;
+	font-weight: normal;
+}
+#search_form .search_container .avatar {
+	max-height: 35px;
+	float: left;
+}
+#search_form .search_container .message:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+#search_form .showall button {
+	border: 0;
+	width: 100%;
+}
