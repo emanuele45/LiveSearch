@@ -35,7 +35,7 @@ class Live_Search
 				AND m.subject LIKE {string:term}
 			LIMIT {int:start}, {int:limit}',
 			array(
-				'term' => '%' . $term . '%',
+				'term' => '%' . implode('%', (array) $term) . '%',
 				'start' => 0,
 				'limit' => $limit,
 			)

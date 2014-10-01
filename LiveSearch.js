@@ -9,6 +9,8 @@
  *
  */
 
+var liveSearch;
+
 (function(){
 	var app = angular.module('livesearch', []);
 
@@ -33,18 +35,20 @@
 		 * Function that fetches the results of the search
 		 */
 		this.liveSearch = function() {
-			search.show = 0;
-			term = search.term.trim();
+			term = search.term.trim().replace(/ /g, '+');
 			if (!search.searchable())
 				return;
 
+			clearTimeout(liveSearch);
 			if (term.length > 2)
 			{
-				$http.get(elk_scripturl + "?action=livesearch;sa=search;xml;api=json;term=" + term + ';type=' + search.type)
-					.success(function(data) {
-						search.msgs = data;
-						search.show = 1;
-					});
+				liveSearch = setTimeout(function(search) {
+					$http.get(elk_scripturl + "?action=livesearch;sa=search;xml;api=json;term=" + term + ';type=' + search.type)
+						.success(function(data) {
+							search.msgs = data;
+							search.show = 1;
+						});
+				}, 500, search);
 			}
 		};
 

@@ -44,6 +44,8 @@ class Livesearch_Controller extends Action_Controller
 		require_once(SUBSDIR . '/LiveSearch.class.php');
 		$db = database();
 		$search = new Live_Search($db);
+		log_error('fetch' . $term);
+		$term = explode(' ', $term);
 		$this->_response = $search->fetch($term, $type);
 	}
 
