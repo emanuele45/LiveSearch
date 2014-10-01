@@ -27,10 +27,12 @@ class Live_Search
 				IFNULL(mem.member_name, m.poster_name) AS poster_name, mem.avatar,
 				IFNULL(a.id_attach, 0) AS id_attach, a.filename, a.attachment_type, mem.email_address
 			FROM {db_prefix}topics AS t
+				LEFT JOIN {db_prefix}boards AS b ON (t.id_board = b.id_board)
 				LEFT JOIN {db_prefix}messages AS m ON (t.id_first_msg = m.id_msg)
 				LEFT JOIN {db_prefix}members AS mem ON (mem.id_member = m.id_member)
 				LEFT JOIN {db_prefix}attachments AS a ON (a.id_member = m.id_member AND a.id_member != 0)
-			WHERE m.subject LIKE {string:term}
+			WHERE {query_see_board}
+				AND m.subject LIKE {string:term}
 			LIMIT {int:start}, {int:limit}',
 			array(
 				'term' => '%' . $term . '%',
